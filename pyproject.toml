@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcmd"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Shubham Sharma", email="s55.sharma@hdr.qut.edu.au" },
 ]

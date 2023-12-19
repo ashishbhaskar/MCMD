@@ -14,7 +14,7 @@ class MCMD():
         """
         pass
 
-    def run(self, datasets: list[pd.DataFrame], rank: int, custom_beta: list[float] | None = None, e: float = 1e-10, n_iter: int = 4000, eps: int = 2000, min_pts: int = 4, delta: list[float] = [0.2, 0.01], sparsity: float = 0.00001, alpha: float | None = None, n_views_outlier: int = 1) -> dict:
+    def run(self, datasets: list[pd.DataFrame], rank: int, classification_object: str = 'date', custom_beta: list[float] | None = None, e: float = 1e-10, n_iter: int = 4000, eps: int = 2000, min_pts: int = 4, delta: list[float] = [0.2, 0.01], sparsity: float = 0.00001, alpha: float | None = None, n_views_outlier: int = 1, y_lim: tuple = (0,1)) -> dict:
         """
         Run the algorithm with given paramteres.
 
@@ -22,6 +22,7 @@ class MCMD():
         -----------
         * datasets :  A list of one or more datasets to be jointly clustered, inputted in pandas data frame format with common indices.
         * rank: Rank of factorization, i.e., the number of Scale-Invariant clusters to be mined in the multi-view datasets.
+        * classification_object: An index common in all datasets on the basis of which classification is to be done. For example: date
         * custom_beta: A list of weightages assigned to each dataset within "Datasets" in the feature engineering stage. The length of "Datasets" and custom_beta should be the same.
         * e: A small number, default value is 1e-07.
         * n_iter: Number of iterations in the feature engineering process (MUNMF).
@@ -31,6 +32,7 @@ class MCMD():
         * sparsity: sparsity is the weightage of the L2 norm for different factor matrices in MUNMF.
         * alpha: alpha is the weight parameter for orthogonality constraint in MUNMF. Default value is set at "number of views (or dataframes in Datasets) / rank.
         * n_views_outlier: Minimum number of views in which an object should be classified as a "shape-based outlier" to be considered as an overall "shape-based" outlier in multi-view classification
+        * y_lim: range of y-axis in chart. Default is (0,1), i.e. 0 to 1
 
         Outputs (dictionary)
         --------
@@ -44,6 +46,8 @@ class MCMD():
         * results_convergence: Reconstruction errors for individual datasets and orthogonality condition.
 
         """
+        self.y_lim = y_lim
+        self.classification_object = classification_object
         return self._mcmd(datasets, rank, custom_beta, e, n_iter=n_iter, eps=eps, MinPts=min_pts, delta=delta, Sparsity=sparsity, alpha=alpha, n_views_outlier=n_views_outlier)
 
     def _mcmd(self, Datasets, rank, custom_beta, e, n_iter, eps = 1000 , MinPts = 4, delta = [0.2, 0.01], Sparsity = 0.00001, alpha = None,  n_views_outlier = 1):
@@ -60,7 +64,7 @@ class MCMD():
         outliers_shape_df = self._get_shape_outliers(A, B, dict1)
         outliers_shape_df1 = outliers_shape_df.groupby('date')['scale_outlier_data'].count().reset_index()
         SI_outlier_objects = outliers_shape_df1[outliers_shape_df1['scale_outlier_data'] >= n_views_outlier]['date'].unique()
-        print('               Following ' + str(len (SI_outlier_objects)) + '/' + str(A.shape[0]) + ' days were classified as scale based outliers.....') 
+        print('               Following ' + str(len (SI_outlier_objects)) + '/' + str(A.shape[0]) + f" {self.classification_object}s were classified as scale based outliers.....") 
         for outlinks in SI_outlier_objects:
             print('                     ' + outlinks) 
         A_df = pd.DataFrame((A).round(10), index = dict1[0][5] )
@@ -364,8 +368,8 @@ class MCMD():
 
             plt.legend(bbox_to_anchor=(1, 1), loc=2, borderaxespad=0.1, title = 'Cluster Id (SV)', fontsize =14)
             plt.rcParams['legend.title_fontsize'] = 20
-            ax.set_ylim([0, 1])
-            plt.xlabel('Dates', fontsize = 20)
+            ax.set_ylim(self.y_lim)
+            plt.xlabel(f"{self.classification_object.capitalize()}s", fontsize = 20)
             plt.ylabel('Reachability score', fontsize = 20)
             plt.savefig("chart.png")
         return (clusters)
