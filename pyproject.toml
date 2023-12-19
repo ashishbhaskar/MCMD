@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcmd"
+version = "1.0.0"
+authors = [
+  { name="Shubham Sharma", email="s55.sharma@hdr.qut.edu.au" },
+]
+description = "Multi-view Classification framework based on Consensus Matrix Decomposition developed by Shubham Sharma at QUT"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy",
+  "pandas", 
+  "matplotlib",
+  "seaborn",
+  "tqdm"
+]
+
+[project.urls]
+Homepage = "https://github.com/ashishbhaskar/MCMD"
+Issues = "https://github.com/ashishbhaskar/MCMD/issues"
