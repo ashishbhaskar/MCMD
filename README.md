@@ -2,7 +2,7 @@
 # MCMD
 
 MCMD (Multi-view Classification framework based on Consensus Matrix Decomposition) is a Multiview algorithm for a joint Scale-Invariant (SI) and Scale-Variant (SV) classification of multiple related datasets. The algorithm is computationally robust to missing information (NaN) in the input datasets, can cluster both single and multiple datasets together, finds clusters based on how similar the shapes of classification objects are (SI classification), identifies the objects which have anomalous shapes and classifies them as "shape-based outliers," mines clusters having both shape and scale similarity, and classifies the scale-based outliers in the dataset. The algorithm is based on a Multi-view Uni-orthogonal Non-negative Matrix Factorization (MUNMF) algorithm combined with an OPTICS-based algorithm.
-
+To refer the article, use: Sharma, Shubham, Richi Nayak, and Ashish Bhaskar. "Multi-view feature engineering for day-to-day joint clustering of multiple traffic datasets." Transportation Research Part C: Emerging Technologies 162 (2024): 104607.
 Developed by: [Shubham Sharma](mailto:s55.sharma@hdr.qut.edu.au)
 
 Parameters
