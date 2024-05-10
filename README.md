@@ -15,7 +15,7 @@ MCMD (**Multi-view Classification framework based on Consensus Matrix Decomposit
 
 <img src="https://ars.els-cdn.com/content/image/1-s2.0-S0968090X24001281-gr2_lrg.jpg" alt="MCMD Framework: https://ars.els-cdn.com/content/image/1-s2.0-S0968090X24001281-gr2_lrg.jpg " width="600"> </img> 
 
-**Figure 1**: ***MCMD Framework*** 
+**Figure 1**: ***MCMD Framework (Source: https://doi.org/10.1016/j.trc.2024.104607 (Fig. 2))*** 
 
 Five key sequential modules in MCMD Framework are:
 1. <code style = "color : aqua"> **Data Structuring** </code>:Structure all datasets as different matrices. Each matrix should have the objects to be clustered along rows, i.e., each row represent a unique object to be clustered (days in the original study). The number of objects andir sequencing along rows in all the matrices should be identical. 
@@ -28,7 +28,7 @@ Five key sequential modules in MCMD Framework are:
 
 The original article is published in **Transportation Research Part-C**. To refer the article, use: 
 
-***Sharma, Shubham, Richi Nayak, and Ashish Bhaskar. "Multi-view feature engineering for day-to-day joint clustering of multiple traffic datasets." Transportation Research Part C: Emerging Technologies 162 (2024): 104607. https://doi.org/10.1016/j.trc.2024.104607***
+***Sharma, Shubham, Richi Nayak, and Ashish Bhaskar. "Multi-view feature engineering for day-to-day joint clustering of multiple traffic datasets." Transportation Research Part C: Emerging Technologies 162 (2024): 104607. https://doi.org/10.1016/j.trc.2024.104607*** 
 
 
 Parameters
