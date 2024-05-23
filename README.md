@@ -89,3 +89,7 @@ res_dict = mcmd.run(
 * matplotlib
 * seaborn
 * tqdm
+
+## Are you facing any issues with implementation of MCMD? Did you spot any bug in the code?
+Feel free to send an email at s50.sharma@qut.edu.au with subject : "**MCMD implementation issue**". We'll be more than happy to help you out.
+
